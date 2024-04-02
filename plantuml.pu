@@ -1,0 +1,83 @@
+@startuml
+
+class models.Animal {
+    + id: integer
+    + nombre: string
+    + especie_id: integer
+    + recinto_id: integer
+    + cuidador_id: integer
+}
+
+class models.Especie {
+    + id: integer
+    + nombre: string
+    + recinto_id: integer
+}
+
+class models.Recinto {
+    + id: integer
+    + nombre: string
+}
+
+class models.Cuidador {
+    + id: integer
+    + nombre: string
+    + especialidad: string
+}
+
+class models.Actividad {
+    + id: integer
+    + nombre: string
+    + horario: string
+}
+
+class models.CuidadorEspecie {
+    + cuidador_id: integer
+    + especie_id: integer
+}
+
+class controllers.Animal {
+    + show(id: integer)
+    + store(data: string[])
+    + update(id: integer, data: string[])
+    + destroy(id: integer)
+}
+
+class controllers.Especie {
+    + show(id: integer)
+    + store(data: string[])
+    + update(id: integer, data: string[])
+    + destroy(id: integer)
+}
+
+class controllers.Recinto {
+    + show(id: integer)
+    + store(data: string[])
+    + update(id: integer, data: string[])
+    + destroy(id: integer)
+}
+
+class controllers.Cuidador {
+    + show(id: integer)
+    + store(data: string[])
+    + update(id: integer, data: string[])
+    + destroy(id: integer)
+}
+
+class controllers.Actividad {
+    + show(id: integer)
+    + store(data: string[])
+    + update(id: integer, data: string[])
+    + destroy(id: integer)
+}
+
+models.Especie "1" -- "0..*" models.Animal
+models.Recinto "1" -- "0..*" models.Animal
+models.Cuidador "1" -- "0..*" models.Animal
+models.Recinto "1" -- "0..*" models.Especie
+models.Cuidador "1" -- "0..*" models.Especie
+models.Animal "1" -- "0..*" models.Actividad
+models.CuidadorEspecie "1" -- "1" models.Cuidador
+models.CuidadorEspecie "1" -- "1" models.Especie
+
+@enduml
